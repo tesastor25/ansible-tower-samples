@@ -19,7 +19,7 @@
       become: true
       synchronize:
         dest: /var/www/html
-        src: ../default-web/
+        src: ../tes/
 
     - name: "Set Directory Owner"
       become: true
