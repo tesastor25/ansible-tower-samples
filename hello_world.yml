@@ -5,9 +5,12 @@
     - name: Hello Message
       debug:
         msg: "Hello World!"
-        
-    - name: install nginx ec2
+    - name: uninstall nginx ec2
       apt:
-       name="nginx"
-       state=present 
-       update_cache=true
+       shell: apt remove nginx -y      
+    - name: install apache2 ec2
+      apt:
+       shell: apt install apache2 -y
+#        name="nginx"
+#        state=present 
+#        update_cache=true
