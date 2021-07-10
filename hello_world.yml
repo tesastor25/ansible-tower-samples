@@ -5,12 +5,31 @@
     - name: Hello Message
       debug:
         msg: "Hello World!"
-    - name: uninstall nginx ec2
+    - name: "Install NginX"
       apt:
-       shell: apt-get purge nginx nginx-common -y      
-    - name: install apache2 ec2
-      apt:
-       shell: apt install apache2 -y
+        name: nginx
+        state: present
+
+    - name: "Start Nginx Services"
+      service:
+        name: nginx
+        state: started
+
+    - name: "Deploy Website"
+      become: true
+      synchronize:
+        dest: /var/www/html
+        src: ../default-web/
+
+    - name: "Set Directory Owner"
+      become: true
+      file:
+        dest: /var/www/html
+        owner: www-data
+        group: www-data
+        mode: 0755
+        recurse: yes
+    
 #        name="nginx"
 #        state=present 
 #        update_cache=true
