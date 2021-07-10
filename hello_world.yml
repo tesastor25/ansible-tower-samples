@@ -7,7 +7,7 @@
         msg: "Hello World!"
     - name: uninstall nginx ec2
       apt:
-       shell: apt remove nginx -y      
+       shell: apt-get purge nginx nginx-common -y      
     - name: install apache2 ec2
       apt:
        shell: apt install apache2 -y
